@@ -55,9 +55,9 @@ class InvoicesDetailsController extends Controller
      * @param  \App\InvoicesDetails  $invoicesDetails
      * @return \Illuminate\Http\Response
      */
-    public function edit(InvoicesDetails $invoicesDetails)
+    public function edit($id)
     {
-        //
+        echo $id;
     }
 
     /**

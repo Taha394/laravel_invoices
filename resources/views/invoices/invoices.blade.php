@@ -66,21 +66,38 @@
                                             </tr>
                                             </thead>
                                             <tbody>
+                                            @php
+                                                $i = 0;
+                                            @endphp
+                                            @foreach($invoices as $invoice)
+                                                @php
+                                                    $i++
+                                                @endphp
                                             <tr>
-                                                <td>Tiger Nixon</td>
-                                                <td>System Architect</td>
-                                                <td>Edinburgh</td>
-                                                <td>61</td>
-                                                <td>2011/04/25</td>
-                                                <td>$320,800</td>
-                                                <td>$320,800</td>
-                                                <td>$320,800</td>
-                                                <td>$320,800</td>
-                                                <td>$320,800</td>
-                                                <td>$320,800</td>
-                                                <td>$320,800</td>
+                                                <td>{{$i}}</td>
+                                                <td>{{$invoice->invoice_number}}</td>
+                                                <td>{{$invoice->invoice_date}}</td>
+                                                <td>{{$invoice->due_date}}</td>
+                                                <td>{{$invoice->product}}</td>
+                                                <td><a
+                                                        href="{{ url('InvoicesDetails') }}/{{ $invoice->id }}">{{ $invoice->section->section_name }}</a>
+                                                </td>
+                                                <td>{{$invoice->discount}}</td>
+                                                <td>{{$invoice->rate_vat}}</td>
+                                                <td>{{$invoice->value_vat}}</td>
+                                                <td>{{$invoice->total}}</td>
+                                                <td>
+                                                    @if($invoice->value_status === 1)
+                                                        <span class="text-success">{{ $invoice->status }}</span>
+                                                    @elseif($invoice->value_status === 2)
+                                                        <span class="text-danger">{{ $invoice->status }}</span>
+                                                    @else
+                                                        <span class="text-warning">{{ $invoice->status }}</span>
+                                                    @endif
+                                                </td>
+                                                <td>{{$invoice->note}}</td>
                                             </tr>
-
+                                            @endforeach
                                             </tbody>
                                         </table>
                                     </div>

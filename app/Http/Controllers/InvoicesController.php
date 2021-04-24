@@ -115,7 +115,7 @@ class InvoicesController extends Controller
      */
     public function edit(Invoices $invoices)
     {
-        //
+
     }
 
     /**

@@ -8,7 +8,7 @@ class Products extends Model
 {
 //    protected $fallible = ['product_name', 'description', 'section_id'];
 
-    protected $guarded;
+    protected $guarded = [];
 
 
     public function section(): \Illuminate\Database\Eloquent\Relations\BelongsTo

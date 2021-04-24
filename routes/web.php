@@ -29,6 +29,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/categories', 'SectionsController');
     Route::resource('/products', 'ProductsController');
     Route::get('/section/{id}', 'InvoicesController@getProducts');
+    Route::get('/InvoicesDetails/{id}', 'InvoicesDetailsController@edit');
     Route::get('/{page}', 'AdminController@index');
 });
 

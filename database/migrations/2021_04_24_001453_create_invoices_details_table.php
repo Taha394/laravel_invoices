@@ -18,10 +18,10 @@ class CreateInvoicesDetailsTable extends Migration
             $table->unsignedBigInteger('id_Invoice');
             $table->string('invoice_number', 50);
             $table->foreign('id_Invoice')->references('id')->on('invoices')->onDelete('cascade');
-            $table->string('products', 50);
-            $table->string('sections', 100);
+            $table->string('product', 50);
+            $table->string('Section', 100);
             $table->string('status', 50);
-            $table->integer('Value_Status');
+            $table->integer('value_status');
             $table->text('note')->nullable();
             $table->string('user', 100);
             $table->timestamps();
@@ -35,6 +35,6 @@ class CreateInvoicesDetailsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('invoices__details');
+        Schema::dropIfExists('invoices_details');
     }
 }

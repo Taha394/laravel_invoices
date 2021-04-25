@@ -9,6 +9,7 @@ use App\Sections;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class InvoicesController extends Controller
 {
@@ -111,11 +112,13 @@ class InvoicesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \App\Invoices  $invoices
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
      */
-    public function edit(Invoices $invoices)
+    public function edit($id)
     {
-
+        $invoices = Invoices::where('id', $id)->first();
+        $sections = Sections::all();
+        return view('invoices.edit_invoice', compact('sections', 'invoices'));
     }
 
     /**
@@ -123,22 +126,65 @@ class InvoicesController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Invoices  $invoices
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, Invoices $invoices)
+    public function update(Request $request)
     {
-        //
+
+        $invoices = Invoices::findOrFail($request->invoice_id);
+        $invoices->update([
+            'invoice_number' => $request->invoice_number,
+            'invoice_date' => $request->invoice_date,
+            'due_date' => $request->due_date,
+            'product' => $request->product,
+            'section_id' => $request->Section,
+            'Amount_collection' => $request->Amount_collection,
+            'Amount_commission' => $request->Amount_commission,
+            'discount' => $request->discount,
+            'value_vat' => $request->value_vat,
+            'rate_vat' => $request->rate_vat,
+            'total' => $request->total,
+            'note' => $request->note,
+        ]);
+
+        session()->flash('edit', 'تم تعديل الفاتورة بنجاح');
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Invoices  $invoices
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
-    public function destroy(Invoices $invoices)
+    public function destroy(Request $request)
     {
-        //
+        $id = $request->invoice_id;
+        $invoices = Invoices::where('id', $id)->first();
+        $Details = Invoice_attachments::where('invoice_id', $id)->first();
+
+        $id_page =$request->id_page;
+
+
+        if (!$id_page == 2) {
+
+            if (!empty($Details->invoice_number)) {
+
+                Storage::disk('public_uploads')->deleteDirectory($Details->invoice_number);
+            }
+
+            $invoices->forceDelete();
+            session()->flash('delete_invoice');
+            return redirect('/invoices');
+
+        }
+
+        else {
+
+            $invoices->delete();
+            session()->flash('archive_invoice');
+            return redirect('/archive');
+        }
     }
 
     public function getProducts($id)

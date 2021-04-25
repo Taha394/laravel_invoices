@@ -56,5 +56,6 @@ return [
     'product name' => 'اسم المنتج',
     'product edit' => 'تعديل المنتج',
     'invoices add' => 'اضافه فاتوره',
+    'invoices_details' => 'تفاصيل الفاتوره',
 
 ];

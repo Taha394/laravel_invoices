@@ -572,7 +572,7 @@ var Transfer = (function ($) {
             for (var i = 0; i < $(transferId).find(transferDoubleSelectedListLi).length; i++) {
                 // 模糊匹配，将所有匹配项显示
                 if ($(transferId).find(transferDoubleSelectedListLi).eq(i).text()
-                        .substr(0, $(selectedListSearchId).val().length).toLowerCase() == $(selectedListSearchId).val().toLowerCase()) {
+                    .substr(0, $(selectedListSearchId).val().length).toLowerCase() == $(selectedListSearchId).val().toLowerCase()) {
                     $(transferId).find(transferDoubleSelectedListLi).eq(i).css('display', 'block');
                 }
             }

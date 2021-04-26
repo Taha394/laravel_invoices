@@ -1,17 +1,17 @@
 @extends('layouts.master')
 
-    <!--- Internal Select2 css-->
-    <link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
-    <!---Internal Fileupload css-->
-    <link href="{{ URL::asset('assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css" />
-    <!---Internal Fancy uploader css-->
-    <link href="{{ URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet" />
-    <!--Internal Sumoselect css-->
-    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css') }}">
-    <!--Internal  TelephoneInput css-->
-    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">
-    <!--Internal   Notify -->
-    <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
+<!--- Internal Select2 css-->
+<link href="{{ URL::asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet">
+<!---Internal Fileupload css-->
+<link href="{{ URL::asset('assets/plugins/fileuploads/css/fileupload.css') }}" rel="stylesheet" type="text/css"/>
+<!---Internal Fancy uploader css-->
+<link href="{{ URL::asset('assets/plugins/fancyuploder/fancy_fileupload.css') }}" rel="stylesheet"/>
+<!--Internal Sumoselect css-->
+<link rel="stylesheet" href="{{ URL::asset('assets/plugins/sumoselect/sumoselect-rtl.css') }}">
+<!--Internal  TelephoneInput css-->
+<link rel="stylesheet" href="{{ URL::asset('assets/plugins/telephoneinput/telephoneinput-rtl.css') }}">
+<!--Internal   Notify -->
+<link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 
 @section('title')
     {{__('messages.invoices add')}}
@@ -22,7 +22,8 @@
     <div class="breadcrumb-header justify-content-between">
         <div class="my-auto">
             <div class="d-flex">
-                <h4 class="content-title mb-0 my-auto">{{__('messages.invoices')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/
+                <h4 class="content-title mb-0 my-auto">{{__('messages.invoices')}}</h4><span
+                    class="text-muted mt-1 tx-13 mr-2 mb-0">/
                     {{__('messages.invoices add')}}</span>
             </div>
         </div>
@@ -33,10 +34,10 @@
 
     @if(session()->has('Add'))
         <script>
-            window.onload = function (){
+            window.onload = function () {
                 notif({
-                    msg:'تم اضافه الفاتوره بنجاح',
-                    type:'success'
+                    msg: 'تم اضافه الفاتوره بنجاح',
+                    type: 'success'
                 })
             }
         </script>
@@ -78,7 +79,8 @@
                         <div class="row">
                             <div class="col">
                                 <label for="inputName" class="control-label">القسم</label>
-                                <select name="Section" class="form-control SlectBox" onclick="console.log($(this).val())"
+                                <select name="Section" class="form-control SlectBox"
+                                        onclick="console.log($(this).val())"
                                         onchange="console.log('change is firing')">
                                     <!--placeholder-->
                                     <option value="" selected disabled>حدد القسم</option>
@@ -154,15 +156,18 @@
                                 <label for="exampleTextarea">ملاحظات</label>
                                 <textarea class="form-control" id="exampleTextarea" name="note" rows="3"></textarea>
                             </div>
-                        </div><br>
+                        </div>
+                        <br>
 
                         <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
                         <h5 class="card-title">المرفقات</h5>
 
                         <div class="col-sm-12 col-md-12">
-                            <input type="file" name="pic" class="dropify" accept=".pdf,.jpg, .png, image/jpeg, image/png"
-                                   data-height="70" />
-                        </div><br>
+                            <input type="file" name="pic" class="dropify"
+                                   accept=".pdf,.jpg, .png, image/jpeg, image/png"
+                                   data-height="70"/>
+                        </div>
+                        <br>
 
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary">حفظ البيانات</button>
@@ -180,11 +185,11 @@
     <!-- Container closed -->
     </div>
     <!-- main-content closed -->
-@endsection
+@stop
 @section('js')
     <!-- Internal Select2 js-->
     <script src="{{ URL::asset('assets/plugins/select2/js/select2.min.js') }}"></script>
-    <!--Internal Fileuploads js-->
+    <!--Internal fileuploads js-->
     <script src="{{ URL::asset('assets/plugins/fileuploads/js/fileupload.js') }}"></script>
     <script src="{{ URL::asset('assets/plugins/fileuploads/js/file-upload.js') }}"></script>
     <!--Internal Fancy uploader js-->
@@ -217,17 +222,17 @@
     </script>
 
     <script>
-        $(document).ready(function() {
-            $('select[name="Section"]').on('change', function() {
+        $(document).ready(function () {
+            $('select[name="Section"]').on('change', function () {
                 var SectionId = $(this).val();
                 if (SectionId) {
                     $.ajax({
                         url: "{{ URL::to('section') }}/" + SectionId,
                         type: "GET",
                         dataType: "json",
-                        success: function(data) {
+                        success: function (data) {
                             $('select[name="product"]').empty();
-                            $.each(data, function(key, value) {
+                            $.each(data, function (key, value) {
                                 $('select[name="product"]').append('<option value="' +
                                     value + '">' + value + '</option>');
                             });

@@ -1,27 +1,28 @@
 @extends('layouts.master')
 
-    <link  href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet"/>
-    <link href="{{URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet" />
-    <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
-    <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
-    <!--Internal   Notify -->
-    <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
+<link href="{{URL::asset('assets/plugins/datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet"/>
+<link href="{{URL::asset('assets/plugins/datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet">
+<link href="{{URL::asset('assets/plugins/datatable/css/responsive.bootstrap4.min.css')}}" rel="stylesheet"/>
+<link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
+<link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
+<link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+<!--Internal   Notify -->
+<link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 
 @section('title')
     {{__('messages.product')}}
 @stop
 @section('page-header')
-				<!-- breadcrumb -->
-				<div class="breadcrumb-header justify-content-between">
-					<div class="my-auto">
-						<div class="d-flex">
-							<h4 class="content-title mb-0 my-auto">{{__('messages.settings')}}</h4><span class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('messages.product')}}</span>
-						</div>
-					</div>
-				</div>
-				<!-- breadcrumb -->
+    <!-- breadcrumb -->
+    <div class="breadcrumb-header justify-content-between">
+        <div class="my-auto">
+            <div class="d-flex">
+                <h4 class="content-title mb-0 my-auto">{{__('messages.settings')}}</h4><span
+                    class="text-muted mt-1 tx-13 mr-2 mb-0">/ {{__('messages.product')}}</span>
+            </div>
+        </div>
+    </div>
+    <!-- breadcrumb -->
 @endsection
 @section('content')
     @if ($errors->any())
@@ -36,10 +37,10 @@
 
     @if(session()->has('Add'))
         <script>
-            window.onload = function (){
+            window.onload = function () {
                 notif({
-                    msg:'تم اضافه المنتج بنجاح',
-                    type:'success'
+                    msg: 'تم اضافه المنتج بنجاح',
+                    type: 'success'
                 })
             }
         </script>
@@ -47,10 +48,10 @@
 
     @if (session()->has('delete'))
         <script>
-            window.onload = function (){
+            window.onload = function () {
                 notif({
-                    msg:'تم حذف المنتج بنجاح',
-                    type:'success'
+                    msg: 'تم حذف المنتج بنجاح',
+                    type: 'success'
                 })
             }
         </script>
@@ -58,22 +59,23 @@
 
     @if (session()->has('edit'))
         <script>
-            window.onload = function (){
+            window.onload = function () {
                 notif({
-                    msg:'تم تعديل المنتج بنجاج',
-                    type:'success'
+                    msg: 'تم تعديل المنتج بنجاج',
+                    type: 'success'
                 })
             }
         </script>
     @endif
-				<!-- row -->
+    <!-- row -->
     <div class="row">
         <div class="col-xl-12">
             <div class="card mg-b-20">
                 <div class="card-header pb-0">
                     <div class="d-flex justify-content-between">
                         <div class="col-sm-11 col-md-2">
-                             <button class="modal-effect btn btn-primary-gradient btn-block" data-effect="effect-scale" data-toggle="modal" href="#exampleModal">{{__('messages.add product')}}</button>
+                            <button class="modal-effect btn btn-primary-gradient btn-block" data-effect="effect-scale"
+                                    data-toggle="modal" href="#exampleModal">{{__('messages.add product')}}</button>
                         </div>
                     </div>
                 </div>
@@ -93,7 +95,7 @@
                             <tbody>
                             <?php $i = 0; ?>
                             @foreach ($products as $product)
-                            <?php $i++; ?>
+                                <?php $i++; ?>
                                 <tr>
                                     <td>{{ $i }}</td>
                                     <td>{{ $product->product_name }}</td>
@@ -102,14 +104,17 @@
                                     <td>
 
                                         <button class="btn btn-outline-success btn-sm"
-                                                data-name="{{ $product->product_name }}" data-pro_id="{{ $product->id }}"
+                                                data-name="{{ $product->product_name }}"
+                                                data-pro_id="{{ $product->id }}"
                                                 data-section_name="{{ $product->section->section_name }}"
                                                 data-description="{{ $product->description }}" data-toggle="modal"
-                                                data-target="#edit_Product">تعديل</button>
+                                                data-target="#edit_Product">تعديل
+                                        </button>
 
                                         <button class="btn btn-outline-danger btn-sm " data-pro_id="{{ $product->id }}"
                                                 data-product_name="{{ $product->product_name }}" data-toggle="modal"
-                                                data-target="#modaldemo9">حذف</button>
+                                                data-target="#modaldemo9">حذف
+                                        </button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -229,7 +234,8 @@
                             <input class="form-control" name="product_name" id="product_name" type="text" readonly>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{__('messages.refuse')}}</button>
+                            <button type="button" class="btn btn-secondary"
+                                    data-dismiss="modal">{{__('messages.refuse')}}</button>
                             <button type="submit" class="btn btn-danger">{{__('messages.sure')}}</button>
                         </div>
                     </form>
@@ -238,7 +244,7 @@
         </div>
     </div><!-- row closed -->
     </div>  <!-- Container closed -->
- </div>	<!-- main-content closed -->
+    </div>    <!-- main-content closed -->
 
 @endsection
 @section('js')
@@ -269,7 +275,7 @@
 
 
     <script>
-        $('#edit_Product').on('show.bs.modal', function(event) {
+        $('#edit_Product').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
             var product_name = button.data('name')
             var section_name = button.data('section_name')
@@ -283,7 +289,7 @@
         })
 
 
-        $('#modaldemo9').on('show.bs.modal', function(event) {
+        $('#modaldemo9').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
             var pro_id = button.data('pro_id')
             var product_name = button.data('product_name')

@@ -1,23 +1,23 @@
-$(function(){
-  'use strict'
+$(function () {
+    'use strict'
 
-  // Line chart
-  $('.peity-line').peity('line');
+    // Line chart
+    $('.peity-line').peity('line');
 
-  // Bar charts
-  $('.peity-bar').peity('bar');
+    // Bar charts
+    $('.peity-bar').peity('bar');
 
-  // Pie chart
-  $('.peity-pie').peity('pie');
+    // Pie chart
+    $('.peity-pie').peity('pie');
 
-  // Donut chart
-  $('.peity-donut').peity('donut');
+    // Donut chart
+    $('.peity-donut').peity('donut');
 
-	// Using data attributes
+    // Using data attributes
     $(".data-attributes span").peity("donut")
 
     // Evented example.
-    $("select").change(function() {
+    $("select").change(function () {
         var text = $(this).val() + "/" + 5
 
         $(this)
@@ -31,9 +31,9 @@ $(function(){
     $("span.graph").peity("pie")
 
     // Updating charts.
-    var updatingChart = $(".updating-chart").peity("line", { width: "100%",height:150 })
+    var updatingChart = $(".updating-chart").peity("line", {width: "100%", height: 150})
 
-    setInterval(function() {
+    setInterval(function () {
         var random = Math.round(Math.random() * 20)
         var values = updatingChart.text().split(",")
         values.shift()
@@ -44,6 +44,6 @@ $(function(){
             .change()
     }, 2500)
 
-	
-  // Bar chart is already initialized found in bracket.js
+
+    // Bar chart is already initialized found in bracket.js
 });

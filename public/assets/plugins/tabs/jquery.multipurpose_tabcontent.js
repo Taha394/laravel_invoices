@@ -1,10 +1,10 @@
-(function($) {
+(function ($) {
     //Attach this new method to jQuery
 
     $.fn.extend({
 
         //This is where you write your plugin's name
-        champ: function(options) {
+        champ: function (options) {
             //Iterate over the current set of matched elements
 
             var defaults = {
@@ -26,7 +26,7 @@
             var li_rel = 1,
                 div_rel = 1;
 
-            return this.each(function() {
+            return this.each(function () {
 
                 var plugin_type = obj.plugin_type;
                 var side = obj.side;
@@ -65,12 +65,12 @@
                 if (ajax == "true") {
                     $.ajax({
                         url: content_path,
-                        success: function(result) {
+                        success: function (result) {
                             $(" .tab_content.tab_" + show_ajax_content_in_tab, parent).html(result);
                         }
                     });
 
-                    $(document).ajaxError(function(event, request, settings) {
+                    $(document).ajaxError(function (event, request, settings) {
                         $(" .tab_content.tab_" + show_ajax_content_in_tab, parent).prepend("<h4 class='error'>Error requesting page " + settings.url + "</h2>");
                     });
                 }
@@ -90,14 +90,14 @@
                     }
                 }
 
-                $(".controller .previous", $(this)).click(function() {
+                $(".controller .previous", $(this)).click(function () {
                     con_siblings = $(this).closest(".controller");
                     con_siblings.siblings("ul").find("li.active").prev().trigger("click");
                     hide_controls(controller_parent);
 
                 });
 
-                $(".controller .next", $(this)).click(function() {
+                $(".controller .next", $(this)).click(function () {
                     con_siblings = $(this).closest(".controller");
                     con_siblings.siblings("ul").find("li.active").next().trigger("click");
                     hide_controls(controller_parent);
@@ -108,8 +108,8 @@
                 $(this).find(" > div > div.tab_content").removeClass("active");
 
                 if (active_tab == "") {
-                    $(this).find(" >ul li:eq(0)").addClass("active").show(); //set active tab on load   
-                    $(this).find(" > div > div.tab_content:eq(0)").addClass("active").show(); //set active tab on load   
+                    $(this).find(" >ul li:eq(0)").addClass("active").show(); //set active tab on load
+                    $(this).find(" > div > div.tab_content:eq(0)").addClass("active").show(); //set active tab on load
                     hide_controls(parent);
 
                 } else {
@@ -123,7 +123,7 @@
 
 
                 // add class to content div
-                tab_content_selector.each(function() {
+                tab_content_selector.each(function () {
                     var tab_count = $(this).parents(".tab_wrapper").length;
                     var add_relation = "tab_" + tab_count + "_" + div_rel;
                     //var add_relation = "tab_" + div_rel;
@@ -140,7 +140,7 @@
                     get_parent.prepend("<div class='active_tab'><span class='text'>" + active_tab_text + "</span><span class='arrow'></span></div>");
                 }
 
-                $(".active_tab").click(function() {
+                $(".active_tab").click(function () {
 
                     $(this).next().stop(true, true).slideToggle();
                 });
@@ -148,7 +148,7 @@
                 // add relation attr to li and generate accordion header for mobile
 
                 //if (responsive == "true") {
-                tab_selector.each(function() {
+                tab_selector.each(function () {
                     var tab_count = $(this).parents(".tab_wrapper").length;
                     var add_relation = "tab_" + tab_count + "_" + li_rel;
 
@@ -159,7 +159,7 @@
 
                     var current_tab_class = $(this).attr("class");
 
-                    tab_content_selector.each(function() {
+                    tab_content_selector.each(function () {
                         if ($(this).hasClass(add_relation)) {
                             get_parent.find(" > div > div.tab_content." + add_relation).before("<div title='" + add_relation + "' class='accordian_header " + add_relation + ' ' + current_tab_class + "'>" + accordian_header + "<span class='arrow'></span></div>");
                         }
@@ -170,7 +170,7 @@
 
 
                 // on click of accordion header slideUp/SlideDown respective content
-                $(".accordian_header").click(function() {
+                $(".accordian_header").click(function () {
                     var clicked_header = $(this).attr("title");
                     var content_status = $(this).next(".tab_content").css("display");
                     var get_closest_parent = $(this).closest(".tab_wrapper");
@@ -192,7 +192,7 @@
                 });
 
                 // on click of tab hide/show respective content
-                tab_selector.click(function() {
+                tab_selector.click(function () {
 
                     var clicked_tab = $(this).attr("rel");
                     var get_new_closest_parent = $(this).closest(".tab_wrapper");
@@ -219,10 +219,7 @@
                         }
                     }
                 });
-				
-				
-				
-				
+
 
             });
         }

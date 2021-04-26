@@ -1,4 +1,4 @@
-$(function() {
+$(function () {
     function ratingEnable() {
         $('#example-1to10').barrating('show', {
             theme: 'bars-1to10'
@@ -23,7 +23,7 @@ $(function() {
             showSelectedRating: false,
             allowEmpty: true,
             emptyValue: '-- no rating selected --',
-            onSelect: function(value, text) {
+            onSelect: function (value, text) {
                 alert('Selected rating: ' + value);
             }
         });
@@ -61,7 +61,7 @@ $(function() {
             .find('span')
             .html(currentRating);
 
-        $('.stars-example-fontawesome-o .clear-rating').on('click', function(event) {
+        $('.stars-example-fontawesome-o .clear-rating').on('click', function (event) {
             event.preventDefault();
 
             $('#example-fontawesome-o')
@@ -72,7 +72,7 @@ $(function() {
             theme: 'fontawesome-stars-o',
             showSelectedRating: false,
             initialRating: currentRating,
-            onSelect: function(value, text) {
+            onSelect: function (value, text) {
                 if (!value) {
                     $('#example-fontawesome-o')
                         .barrating('clear');
@@ -86,7 +86,7 @@ $(function() {
                         .html(value);
                 }
             },
-            onClear: function(value, text) {
+            onClear: function (value, text) {
                 $('.stars-example-fontawesome-o')
                     .find('.current-rating')
                     .removeClass('hidden')
@@ -101,7 +101,7 @@ $(function() {
         $('select').barrating('destroy');
     }
 
-    $('.rating-enable').click(function(event) {
+    $('.rating-enable').click(function (event) {
         event.preventDefault();
 
         ratingEnable();
@@ -110,7 +110,7 @@ $(function() {
         $('.rating-disable').removeClass('deactivated');
     });
 
-    $('.rating-disable').click(function(event) {
+    $('.rating-disable').click(function (event) {
         event.preventDefault();
 
         ratingDisable();

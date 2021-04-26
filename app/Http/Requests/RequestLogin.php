@@ -28,6 +28,7 @@ class RequestLogin extends FormRequest
             'password' => 'required'
         ];
     }
+
     public function messages()
     {
         return [

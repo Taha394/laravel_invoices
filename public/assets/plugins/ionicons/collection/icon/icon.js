@@ -7,6 +7,90 @@ export class Icon {
          */
         this.lazy = true;
     }
+
+    static get is() {
+        return "ion-icon";
+    }
+
+    static get encapsulation() {
+        return "shadow";
+    }
+
+    static get properties() {
+        return {
+            "ariaLabel": {
+                "type": String,
+                "attr": "aria-label",
+                "reflectToAttr": true,
+                "mutable": true
+            },
+            "color": {
+                "type": String,
+                "attr": "color"
+            },
+            "doc": {
+                "context": "document"
+            },
+            "el": {
+                "elementRef": true
+            },
+            "icon": {
+                "type": String,
+                "attr": "icon",
+                "watchCallbacks": ["loadIcon"]
+            },
+            "ios": {
+                "type": String,
+                "attr": "ios"
+            },
+            "isServer": {
+                "context": "isServer"
+            },
+            "isVisible": {
+                "state": true
+            },
+            "lazy": {
+                "type": Boolean,
+                "attr": "lazy"
+            },
+            "md": {
+                "type": String,
+                "attr": "md"
+            },
+            "mode": {
+                "type": String,
+                "attr": "mode"
+            },
+            "name": {
+                "type": String,
+                "attr": "name",
+                "watchCallbacks": ["loadIcon"]
+            },
+            "resourcesUrl": {
+                "context": "resourcesUrl"
+            },
+            "size": {
+                "type": String,
+                "attr": "size"
+            },
+            "src": {
+                "type": String,
+                "attr": "src",
+                "watchCallbacks": ["loadIcon"]
+            },
+            "svgContent": {
+                "state": true
+            },
+            "win": {
+                "context": "window"
+            }
+        };
+    }
+
+    static get style() {
+        return "/**style-placeholder:ion-icon:**/";
+    }
+
     componentWillLoad() {
         // purposely do not return the promise here because loading
         // the svg file should not hold up loading the app
@@ -16,12 +100,14 @@ export class Icon {
             this.loadIcon();
         });
     }
+
     componentDidUnload() {
         if (this.io) {
             this.io.disconnect();
             this.io = undefined;
         }
     }
+
     waitUntilVisible(el, rootMargin, cb) {
         if (this.lazy && this.win && this.win.IntersectionObserver) {
             const io = this.io = new this.win.IntersectionObserver((data) => {
@@ -30,15 +116,15 @@ export class Icon {
                     this.io = undefined;
                     cb();
                 }
-            }, { rootMargin });
+            }, {rootMargin});
             io.observe(el);
-        }
-        else {
+        } else {
             // browser doesn't support IntersectionObserver
             // so just fallback to always show it
             cb();
         }
     }
+
     loadIcon() {
         if (!this.isServer && this.isVisible) {
             const url = this.getUrl();
@@ -60,6 +146,7 @@ export class Icon {
             }
         }
     }
+
     getUrl() {
         let url = getSrc(this.src);
         if (url) {
@@ -79,106 +166,40 @@ export class Icon {
         }
         return null;
     }
+
     getNamedUrl(name) {
         return `${this.resourcesUrl}svg/${name}.svg`;
     }
+
     hostData() {
         return {
             'role': 'img',
-            class: Object.assign({}, createColorClasses(this.color), { [`icon-${this.size}`]: !!this.size })
+            class: Object.assign({}, createColorClasses(this.color), {[`icon-${this.size}`]: !!this.size})
         };
     }
+
     render() {
         if (!this.isServer && this.svgContent) {
             // we've already loaded up this svg at one point
             // and the svg content we've loaded and assigned checks out
             // render this svg!!
-            return h("div", { class: "icon-inner", innerHTML: this.svgContent });
+            return h("div", {class: "icon-inner", innerHTML: this.svgContent});
         }
         // actively requesting the svg
         // or it's an SSR render
         // so let's just render an empty div for now
-        return h("div", { class: "icon-inner" });
+        return h("div", {class: "icon-inner"});
     }
-    static get is() { return "ion-icon"; }
-    static get encapsulation() { return "shadow"; }
-    static get properties() { return {
-        "ariaLabel": {
-            "type": String,
-            "attr": "aria-label",
-            "reflectToAttr": true,
-            "mutable": true
-        },
-        "color": {
-            "type": String,
-            "attr": "color"
-        },
-        "doc": {
-            "context": "document"
-        },
-        "el": {
-            "elementRef": true
-        },
-        "icon": {
-            "type": String,
-            "attr": "icon",
-            "watchCallbacks": ["loadIcon"]
-        },
-        "ios": {
-            "type": String,
-            "attr": "ios"
-        },
-        "isServer": {
-            "context": "isServer"
-        },
-        "isVisible": {
-            "state": true
-        },
-        "lazy": {
-            "type": Boolean,
-            "attr": "lazy"
-        },
-        "md": {
-            "type": String,
-            "attr": "md"
-        },
-        "mode": {
-            "type": String,
-            "attr": "mode"
-        },
-        "name": {
-            "type": String,
-            "attr": "name",
-            "watchCallbacks": ["loadIcon"]
-        },
-        "resourcesUrl": {
-            "context": "resourcesUrl"
-        },
-        "size": {
-            "type": String,
-            "attr": "size"
-        },
-        "src": {
-            "type": String,
-            "attr": "src",
-            "watchCallbacks": ["loadIcon"]
-        },
-        "svgContent": {
-            "state": true
-        },
-        "win": {
-            "context": "window"
-        }
-    }; }
-    static get style() { return "/**style-placeholder:ion-icon:**/"; }
 }
+
 const requests = new Map();
+
 function getSvgContent(url) {
     // see if we already have a request for this url
     let req = requests.get(url);
     if (!req) {
         // we don't already have a request
-        req = fetch(url, { cache: 'force-cache' }).then(rsp => {
+        req = fetch(url, {cache: 'force-cache'}).then(rsp => {
             if (rsp.ok) {
                 return rsp.text();
             }
@@ -189,6 +210,7 @@ function getSvgContent(url) {
     }
     return req;
 }
+
 export function getName(name, mode, ios, md) {
     // default to "md" if somehow the mode wasn't set
     mode = (mode || 'md').toLowerCase();
@@ -196,11 +218,9 @@ export function getName(name, mode, ios, md) {
     // set the iconName to whatever was passed in
     if (ios && mode === 'ios') {
         name = ios.toLowerCase();
-    }
-    else if (md && mode === 'md') {
+    } else if (md && mode === 'md') {
         name = md.toLowerCase();
-    }
-    else if (name) {
+    } else if (name) {
         name = name.toLowerCase();
         if (!/^md-|^ios-|^logo-/.test(name)) {
             // this does not have one of the defaults
@@ -218,6 +238,7 @@ export function getName(name, mode, ios, md) {
     }
     return name;
 }
+
 export function getSrc(src) {
     if (typeof src === 'string') {
         src = src.trim();
@@ -227,6 +248,7 @@ export function getSrc(src) {
     }
     return null;
 }
+
 function validateContent(document, svgContent, scopeId) {
     if (svgContent) {
         const frag = document.createDocumentFragment();
@@ -255,6 +277,7 @@ function validateContent(document, svgContent, scopeId) {
     }
     return '';
 }
+
 export function isValid(elm) {
     if (elm.nodeType === 1) {
         if (elm.nodeName.toLowerCase() === 'script') {
@@ -274,6 +297,7 @@ export function isValid(elm) {
     }
     return true;
 }
+
 function createColorClasses(color) {
     return (color) ? {
         'ion-color': true,

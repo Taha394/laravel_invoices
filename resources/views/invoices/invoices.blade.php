@@ -43,7 +43,7 @@
             window.onload = function () {
                 notif({
                     msg: 'تم حذف الفاتوره بنجاح',
-                    type:'success'
+                    type: 'success'
                 })
             }
         </script>
@@ -126,14 +126,13 @@
                                                     الفاتورة
                                                 </a>
 
-                                                @can('تغير حالة الدفع')
-                                                    <a class="dropdown-item"
-                                                       href="{{ URL::route('Status_show', [$invoice->id]) }}"><i
-                                                            class=" text-success fas
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            fa-money-bill"></i>&nbsp;&nbsp;تغير
+
+                                                    <a class="dropdown-item" href="#">
+                                                        <i class=" text-success fas fa-money-bill"></i>&nbsp;&nbsp;تغير
                                                         حالة
-                                                        الدفع</a>
-                                                @endcan
+                                                        الدفع
+                                                    </a>
+
 
 
                                                 <a class="dropdown-item" href="#" data-invoice_id="{{ $invoice->id }}"

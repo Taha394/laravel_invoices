@@ -33,7 +33,7 @@ class ProductsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
@@ -41,13 +41,13 @@ class ProductsController extends Controller
         $validateData = $request->validate([
                 'product_name' => 'required|max:255',
                 'section_id' => 'required',
-                'description'  => 'required',]
-           ,[
+                'description' => 'required',]
+            , [
                 'product_name.required' => 'يرجي ادخال اسم المنتج',
                 'section_id' => 'يرجي ادخال اسم القسم',
                 'description.required' => 'يرجي ادخال البيان ',
                 'product_name.max' => 'لايجب ان يتعدي اسم المنتج عن 255 حرف',
-           ]);
+            ]);
 
         Products::create([
             'product_name' => $request->product_name,
@@ -63,7 +63,7 @@ class ProductsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Products  $products
+     * @param \App\Products $products
      * @return \Illuminate\Http\Response
      */
     public function show(Products $products)
@@ -74,7 +74,7 @@ class ProductsController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Products  $products
+     * @param \App\Products $products
      * @return \Illuminate\Http\Response
      */
     public function edit(Products $products)
@@ -85,8 +85,8 @@ class ProductsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Products  $products
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Products $products
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function update(Request $request)
@@ -100,7 +100,7 @@ class ProductsController extends Controller
             'description' => $request->description,
             'section_id' => $id,
         ]);
-        session()->flash('edit','تم تعديل المنتج بنجاج');
+        session()->flash('edit', 'تم تعديل المنتج بنجاج');
         return redirect('/products');
     }
 
@@ -108,14 +108,14 @@ class ProductsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Products  $products
+     * @param \App\Products $products
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function destroy(Request $request)
     {
         $product = Products::findOrFail($request->pro_id);
         $product->delete();
-        session()->flash('delete','تم حذف المنتج بنجاح');
+        session()->flash('delete', 'تم حذف المنتج بنجاح');
         return redirect('/products');
     }
 }

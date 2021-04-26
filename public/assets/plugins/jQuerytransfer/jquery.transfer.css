@@ -43,19 +43,20 @@
     -moz-border-radius: 10px;
     border-radius: 10px;
 }
+
 .radio-group .radio-normal:checked + label:before {
     content: "\e6bf";
     font-family: "iconfont";
     color: #fff;
     font-size: 14px;
     line-height: 15px;
-    
+
 }
 
 .radio-group .radio-normal:disabled + label:before {
     color: #fff;
     border: 1px solid #ccc;
-    background:#edeff5;
+    background: #edeff5;
     cursor: not-allowed;
 }
 
@@ -78,6 +79,7 @@
     -moz-border-radius: 3px;
     border-radius: 3px;
 }
+
 .checkbox-group .checkbox-normal:checked + label:before {
     content: "\e93e";
     font-family: "iconfont";
@@ -90,7 +92,7 @@
 .checkbox-group .checkbox-normal:disabled + label:before {
     color: #fff;
     border: 1px solid #ccc;
-    background-color:#edeff5;
+    background-color: #edeff5;
     cursor: not-allowed;
 }
 
@@ -128,19 +130,22 @@
 }
 
 .transfer-double {
-    width:100%;
+    width: 100%;
     height: 100%;
     background-color: #fff;
     left: 30%;
-	position: inherit;
+    position: inherit;
     z-index: 1000;
     border-radius: 2px;
-   
+
 }
+
 .transfer-double-header {
 }
+
 .transfer-double-content {
 }
+
 .transfer-double-content-left {
     display: inline-block;
     width: 46%;
@@ -149,14 +154,16 @@
     border-radius: 0px;
     float: left;
 }
+
 .transfer-double-content-middle {
     display: inline-block;
     width: 35px;
     float: left;
     margin: 12% 22px 0 22px;
     text-align: center;
-	vertical-align:middle;
+    vertical-align: middle;
 }
+
 .transfer-double-content-right {
     display: inline-block;
     width: 46%;
@@ -164,6 +171,7 @@
     border: 1px solid #edeff5;
     border-radius: 0px;
 }
+
 .transfer-double-content-tabs {
     display: inline-block;
     width: 100%;
@@ -178,6 +186,7 @@
     margin-left: 15%;
     cursor: pointer;
 }
+
 .transfer-double-content-param {
     display: inline-block;
     width: 100%;
@@ -255,7 +264,7 @@
 
 .transfer-double-list-main .transfer-double-group-list-ul .transfer-double-group-list-li .transfer-double-group-list-li-ul {
     list-style: none;
-	padding-left: 0;
+    padding-left: 0;
 }
 
 .transfer-double-list-main .transfer-double-group-list-ul .transfer-double-group-list-li .transfer-double-group-list-li-ul .transfer-double-group-list-li-ul-li {
@@ -265,30 +274,36 @@
 .transfer-double-selected-list {
 
 }
+
 .transfer-double-selected-list-header {
     padding: 8px 8px 6px 8px;
     text-align: center;
 }
+
 .transfer-double-selected-list-search-input {
     width: 100%;
     line-height: 24px;
-	color:#777ab2 !important;
+    color: #777ab2 !important;
     border: 1px solid #edeff5;
     padding: 5px 0 4px 8px;
     border-radius: 2px;
 }
+
 .transfer-double-selected-list-content {
     padding: 3px 3px;
 }
+
 .transfer-double-selected-list-main {
     height: 210px;
     overflow-y: auto;
 }
+
 .transfer-double-selected-list-main .transfer-double-selected-list-ul {
     list-style: none;
     padding-left: 25px;
     margin: 0;
 }
+
 .transfer-double-selected-list-main .transfer-double-selected-list-ul .transfer-double-selected-list-li {
     margin-top: 5px;
 }
@@ -296,15 +311,18 @@
 .transfer-double-selected-list-main .transfer-double-selected-list-ul .transfer-double-selected-list-li .checkbox-group {
     width: 65%;
 }
+
 .transfer-double-selected-list-main .transfer-double-selected-list-ul .transfer-double-selected-list-li input[type="checkbox"] {
     margin-right: 10px;
 }
+
 .transfer-double-selected-list-main .transfer-double-selected-list-ul .transfer-double-selected-list-li input[type="text"] {
     min-width: 40px;
     width: 40px;
     min-height: 24px;
     height: 24px;
 }
+
 .transfer-double-list-footer {
     height: 24px;
     line-height: 24px;
@@ -312,9 +330,11 @@
     padding-left: 18px;
     padding-top: 1px;
 }
+
 .transfer-double-list-footer span {
     margin-left: 20px;
 }
+
 .transfer-double-list-footer input {
     min-width: 40px;
     width: 40px;
@@ -322,17 +342,21 @@
     height: 24px;
     margin-left: 75px;
 }
+
 .transfer-double-list-footer .btn-setting {
     display: inline-block;
     margin-left: 5px;
 }
+
 .transfer-double-list-footer label {
     margin-left: 10px;
-	margin-top: 5px;
+    margin-top: 5px;
 }
+
 .transfer-double-footer {
     text-align: right;
 }
+
 .btn-select-arrow {
     display: inline-block;
     width: 34px;
@@ -341,9 +365,11 @@
     color: #5c6287;
     background: #edeff5;
 }
+
 .btn-select-arrow + .btn-select-arrow {
     margin-top: 10px;
 }
+
 /*
  *????
  */
@@ -398,9 +424,10 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 
 .transfer-double-list-main::-webkit-scrollbar-thumb {
-    background:#edeff5;
+    background: #edeff5;
     border-radius: 2px;
 }
+
 .transfer-double-list-main::-webkit-scrollbar-corner {
     background: #f6f6f6;
 }
@@ -416,46 +443,55 @@ input:-ms-input-placeholder { /* Internet Explorer 10+ */
 }
 
 .transfer-double-selected-list-main::-webkit-scrollbar-thumb {
-    background:#edeff5;
+    background: #edeff5;
     border-radius: 2px;
 }
+
 .transfer-double-selected-list-main::-webkit-scrollbar-corner {
     background: #f6f6f6;
 }
 
 /** responsive **/
 @media (max-width: 480px) {
-	.transfer-double-content-left{
-		width:100%;
-	}
-	.transfer-double-content-right{
-		width:100%;
-	}
-	.transfer-double-content-middle{
-		margin:15px 15px 15px 40%;
-	}
+    .transfer-double-content-left {
+        width: 100%;
+    }
+
+    .transfer-double-content-right {
+        width: 100%;
+    }
+
+    .transfer-double-content-middle {
+        margin: 15px 15px 15px 40%;
+    }
 }
-@media (min-width: 481px) and (max-width: 992px){ 
-	.transfer-double-content-left{
-		width:100%;
-	}
-	.transfer-double-content-right{
-		Width:100%;
-	}
-	.transfer-double-content-middle{
-		margin:15px 15px 15px 40%;
-	}
-	.transfer{
-		padding-right:0 !important;
-	}
-	
+
+@media (min-width: 481px) and (max-width: 992px) {
+    .transfer-double-content-left {
+        width: 100%;
+    }
+
+    .transfer-double-content-right {
+        Width: 100%;
+    }
+
+    .transfer-double-content-middle {
+        margin: 15px 15px 15px 40%;
+    }
+
+    .transfer {
+        padding-right: 0 !important;
+    }
+
 }
-@media (min-width: 993px) and (max-width: 1366px){ 
-	.transfer-double-content-left{
-		width:43%;
-	}
-	.transfer-double-content-right{
-		Width:43%;
-	}
-	
+
+@media (min-width: 993px) and (max-width: 1366px) {
+    .transfer-double-content-left {
+        width: 43%;
+    }
+
+    .transfer-double-content-right {
+        Width: 43%;
+    }
+
 }

@@ -2,15 +2,15 @@
 .token.cr,
 .token.lf,
 .token.space {
-	position: relative;
+    position: relative;
 }
 
 .token.tab:not(:empty):before,
 .token.cr:before,
 .token.lf:before,
 .token.space:before {
-	color: hsl(24, 20%, 85%);
-	position: absolute;
+    color: hsl(24, 20%, 85%);
+    position: absolute;
 }
 
 .token.tab:not(:empty):before {
@@ -24,10 +24,11 @@
 .token.crlf:before {
     content: '\240D\240A';
 }
+
 .token.lf:before {
     content: '\240A';
 }
 
 .token.space:before {
-	content: '\00B7';
+    content: '\00B7';
 }

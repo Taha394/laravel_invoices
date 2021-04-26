@@ -10,7 +10,7 @@ class LoginController extends Controller
 {
     public function getLogin()
     {
-       return view('auth.login');
+        return view('auth.login');
     }
 
     public function login(RequestLogin $request)
@@ -19,7 +19,7 @@ class LoginController extends Controller
 
         if (auth()->attempt(['email' => $request->input("email"), 'password' => $request->input("password")], $remember_me)) {
             // notify()->success('تم الدخول بنجاح  ');
-            return redirect()-> route('home');
+            return redirect()->route('home');
         }
         return redirect()->back()->with(['error' => 'هناك خطاء في البيانات']);
     }

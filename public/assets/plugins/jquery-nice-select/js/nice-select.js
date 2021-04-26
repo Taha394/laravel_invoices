@@ -1,7 +1,6 @@
+(function ($) {
+    "use strict";
 
-(function($) {
-    "use strict";	
-	
-		// ______________Nice Select	
-	$('select.nice-select').niceSelect();
+    // ______________Nice Select
+    $('select.nice-select').niceSelect();
 })(jQuery);

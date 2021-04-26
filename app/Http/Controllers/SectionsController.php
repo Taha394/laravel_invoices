@@ -32,28 +32,28 @@ class SectionsController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
-            $validateData = $request->validate([
-                    'section_name' => 'required|unique:sections|max:255',]
-                ,[
-                    'section_name.required' => 'يرجي ادخال اسم القسم',
-                    'section_name.unique' => 'القسم الذي تحاول ادخاله موجود بالفعل',
-                    'section_name.max' => 'لايجب ان يتعدي اسم القسم عن 255 حرف',
-                ]);
+        $validateData = $request->validate([
+                'section_name' => 'required|unique:sections|max:255',]
+            , [
+                'section_name.required' => 'يرجي ادخال اسم القسم',
+                'section_name.unique' => 'القسم الذي تحاول ادخاله موجود بالفعل',
+                'section_name.max' => 'لايجب ان يتعدي اسم القسم عن 255 حرف',
+            ]);
 
-                 Sections::create([
-                    'section_name' => $request->section_name,
-                    'description' => $request->description,
-                    'created_by' => (Auth::user()->name),
-                ]);
+        Sections::create([
+            'section_name' => $request->section_name,
+            'description' => $request->description,
+            'created_by' => (Auth::user()->name),
+        ]);
 
 
-            session()->flash('Add');
-            return redirect('/categories');
+        session()->flash('Add');
+        return redirect('/categories');
 
     }
 
@@ -61,8 +61,8 @@ class SectionsController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Sections  $sections
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Sections $sections
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function update(Request $request)
@@ -71,12 +71,12 @@ class SectionsController extends Controller
 
         $this->validate($request, [
 
-            'section_name' => 'required|max:255|unique:sections,section_name,'.$id,
+            'section_name' => 'required|max:255|unique:sections,section_name,' . $id,
 //            'description' => 'required',
-        ],[
+        ], [
 
-            'section_name.required' =>'يرجي ادخال اسم القسم',
-            'section_name.unique' =>'اسم القسم مسجل مسبقا',
+            'section_name.required' => 'يرجي ادخال اسم القسم',
+            'section_name.unique' => 'اسم القسم مسجل مسبقا',
 //            'description.required' =>'يرجي ادخال البيانات',
 
         ]);
@@ -87,14 +87,14 @@ class SectionsController extends Controller
             'description' => $request->description,
         ]);
 
-        session()->flash('edit','تم تعديل القسم بنجاج');
+        session()->flash('edit', 'تم تعديل القسم بنجاج');
         return redirect('/categories');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\sections  $sections
+     * @param \App\sections $sections
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function destroy(Request $request)

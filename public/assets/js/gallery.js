@@ -1,5 +1,5 @@
-(function($) {
+(function ($) {
     "use strict";
-	$('#lightgallery').lightGallery();
-	$('#video-gallery').lightGallery(); 
+    $('#lightgallery').lightGallery();
+    $('#video-gallery').lightGallery();
 })(jQuery);

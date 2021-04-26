@@ -1,5 +1,5 @@
 // Easy Responsive Tabs Plugin
-// Author: Samson.Onna <Email : samson3d@gmail.com> 
+// Author: Samson.Onna <Email : samson3d@gmail.com>
 (function ($) {
     $.fn.extend({
         easyResponsiveTabs: function (options) {
@@ -19,7 +19,8 @@
             }
             //Variables
             var options = $.extend(defaults, options);
-            var opt = options, jtype = opt.type, jfit = opt.fit, jwidth = opt.width, vtabs = 'vertical', accord = 'accordion';
+            var opt = options, jtype = opt.type, jfit = opt.fit, jwidth = opt.width, vtabs = 'vertical',
+                accord = 'accordion';
             var hash = window.location.hash;
             var historyApi = !!(window.history && history.replaceState);
 
@@ -47,13 +48,14 @@
                 $respTabs.find('.resp-tabs-container.' + options.tabidentify).css('border-color', options.active_content_border_color);
                 $respTabs.find('.resp-tabs-container.' + options.tabidentify + ' > div').addClass('resp-tab-content').addClass(options.tabidentify);
                 jtab_options();
+
                 //Properties Function
                 function jtab_options() {
                     if (jtype == vtabs) {
                         $respTabs.addClass('resp-vtabs').addClass(options.tabidentify);
                     }
                     if (jfit == true) {
-                        $respTabs.css({ width: '100%', margin: '0px' });
+                        $respTabs.css({width: '100%', margin: '0px'});
                     }
                     if (jtype == accord) {
                         $respTabs.addClass('resp-easy-accordion').addClass(options.tabidentify);
@@ -117,7 +119,6 @@
                     }
                 }
 
-                
 
                 //Tab Click action function
                 $respTabs.find("[role=tab]").each(function () {
@@ -179,12 +180,10 @@
                                 var re = new RegExp(respTabsId + "[0-9]+");
                                 if (currentHash.match(re) != null) {
                                     newHash = currentHash.replace(re, newHash);
-                                }
-                                else {
+                                } else {
                                     newHash = currentHash + "|" + newHash;
                                 }
-                            }
-                            else {
+                            } else {
                                 newHash = '#' + newHash;
                             }
 
@@ -194,7 +193,7 @@
 
                 });
 
-                //Window resize function                   
+                //Window resize function
                 $(window).resize(function () {
                     $respTabs.find('.resp-accordion-closed').removeAttr('style');
                 });

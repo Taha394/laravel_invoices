@@ -1,16 +1,16 @@
 @extends('layouts.master')
 
-    <!---Internal  Prism css-->
-    <link href="{{ URL::asset('assets/plugins/prism/prism.css') }}" rel="stylesheet">
-    <!---Internal Input tags css-->
-    <link href="{{ URL::asset('assets/plugins/inputtags/inputtags.css') }}" rel="stylesheet">
-    <!--- Custom-scroll -->
-    <link href="{{ URL::asset('assets/plugins/custom-scroll/jquery.mCustomScrollbar.css') }}" rel="stylesheet">
+<!---Internal  Prism css-->
+<link href="{{ URL::asset('assets/plugins/prism/prism.css') }}" rel="stylesheet">
+<!---Internal Input tags css-->
+<link href="{{ URL::asset('assets/plugins/inputtags/inputtags.css') }}" rel="stylesheet">
+<!--- Custom-scroll -->
+<link href="{{ URL::asset('assets/plugins/custom-scroll/jquery.mCustomScrollbar.css') }}" rel="stylesheet">
 
 @section('title')
     {{__('messages.invoices_details')}}
 @stop
-				<!-- breadcrumb -->
+<!-- breadcrumb -->
 @section('page-header')
     <!-- breadcrumb -->
     <div class="breadcrumb-header justify-content-between">
@@ -161,9 +161,9 @@
                                                         <th>نوع المنتج</th>
                                                         <th>القسم</th>
                                                         <th>حالة الدفع</th>
-                                                        <th>تاريخ الدفع </th>
+                                                        <th>تاريخ الدفع</th>
                                                         <th>ملاحظات</th>
-                                                        <th>تاريخ الاضافة </th>
+                                                        <th>تاريخ الاضافة</th>
                                                         <th>المستخدم</th>
                                                     </tr>
                                                     </thead>
@@ -207,26 +207,28 @@
                                             <!--المرفقات-->
                                             <div class="card card-statistics">
 
-                                                    <div class="card-body">
-                                                        <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
-                                                        <h5 class="card-title">اضافة مرفقات</h5>
-                                                        <form method="post" action="{{ url('/InvoiceAttachments') }}"
-                                                              enctype="multipart/form-data">
-                                                            {{ csrf_field() }}
-                                                            <div class="custom-file">
-                                                                <input type="file" class="custom-file-input" id="customFile"
-                                                                       name="file_name" required>
-                                                                <input type="hidden" id="customFile" name="invoice_number"
-                                                                       value="{{ $invoices->invoice_number }}">
-                                                                <input type="hidden" id="invoice_id" name="invoice_id"
-                                                                       value="{{ $invoices->id }}">
-                                                                <label class="custom-file-label" for="customFile">حدد
-                                                                    المرفق</label>
-                                                            </div><br><br>
-                                                            <button type="submit" class="btn btn-primary btn-sm "
-                                                                    name="uploadedFile">تاكيد</button>
-                                                        </form>
-                                                    </div>
+                                                <div class="card-body">
+                                                    <p class="text-danger">* صيغة المرفق pdf, jpeg ,.jpg , png </p>
+                                                    <h5 class="card-title">اضافة مرفقات</h5>
+                                                    <form method="post" action="{{ url('/InvoiceAttachments') }}"
+                                                          enctype="multipart/form-data">
+                                                        {{ csrf_field() }}
+                                                        <div class="custom-file">
+                                                            <input type="file" class="custom-file-input" id="customFile"
+                                                                   name="file_name" required>
+                                                            <input type="hidden" id="customFile" name="invoice_number"
+                                                                   value="{{ $invoices->invoice_number }}">
+                                                            <input type="hidden" id="invoice_id" name="invoice_id"
+                                                                   value="{{ $invoices->id }}">
+                                                            <label class="custom-file-label" for="customFile">حدد
+                                                                المرفق</label>
+                                                        </div>
+                                                        <br><br>
+                                                        <button type="submit" class="btn btn-primary btn-sm "
+                                                                name="uploadedFile">تاكيد
+                                                        </button>
+                                                    </form>
+                                                </div>
 
                                                 <br>
 
@@ -349,7 +351,7 @@
     <script src="{{ URL::asset('assets/plugins/prism/prism.js') }}"></script>
 
     <script>
-        $('#delete_file').on('show.bs.modal', function(event) {
+        $('#delete_file').on('show.bs.modal', function (event) {
             var button = $(event.relatedTarget)
             var id_file = button.data('id_file')
             var file_name = button.data('file_name')
@@ -363,7 +365,7 @@
 
     <script>
         // Add the following code if you want the name of the file appear on select
-        $(".custom-file-input").on("change", function() {
+        $(".custom-file-input").on("change", function () {
             var fileName = $(this).val().split("\\").pop();
             $(this).siblings(".custom-file-label").addClass("selected").html(fileName);
         });

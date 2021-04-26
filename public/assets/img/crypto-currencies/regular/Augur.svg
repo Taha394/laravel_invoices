@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xml:space="preserve">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" x="0px"
+     y="0px"
+     viewBox="0 0 128 128" style="enable-background:new 0 0 128 128;" xml:space="preserve">
 <style type="text/css">
 	.st0{fill:none;stroke:#FFFFFF;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
 	.st1{fill:#b82f95;}
 </style>
-<path class="st0" d="M104,101.1"/>
-<g>
+    <path class="st0" d="M104,101.1"/>
+    <g>
 	<path class="st1" d="M64,128c-1.2-0.5-2.3-0.9-3.3-1.5c-15.9-9.5-31.7-18.9-47.6-28.4C9.5,95.9,8.9,93.8,11,90
 		C27.1,61.1,43.2,32.3,59.2,3.4c1.1-2,2.4-3.5,4.8-3.4c2.4,0,3.7,1.6,4.8,3.6c16,28.8,32.1,57.5,48.1,86.3c2.2,3.9,1.6,6.1-2.2,8.3
 		c-15.7,9.4-31.4,18.8-47.1,28.1C66.5,127,65.3,127.4,64,128z M58.3,98.3c-3.7-2.2-7.3-4.4-11-6.6c-2.7-1.7-5.2-3.5-8-5.1

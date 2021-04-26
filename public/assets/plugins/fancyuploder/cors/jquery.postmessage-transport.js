@@ -68,7 +68,7 @@
             // element, but not in the location.host or origin property for the
             // default http port 80 and https port 443, so we strip it:
             if (/^(http:\/\/.+:80)|(https:\/\/.+:443)$/.test(target)) {
-              target = target.replace(/:(80|443)$/, '');
+                target = target.replace(/:(80|443)$/, '');
             }
             return {
                 send: function (_, completeCallback) {
@@ -79,8 +79,8 @@
                         eventName = 'message.' + message.id;
                     iframe = $(
                         '<iframe style="display:none;" src="' +
-                            options.postMessage + '" name="' +
-                            message.id + '"></iframe>'
+                        options.postMessage + '" name="' +
+                        message.id + '"></iframe>'
                     ).bind('load', function () {
                         $.each(names, function (i, name) {
                             message[name] = options[name];

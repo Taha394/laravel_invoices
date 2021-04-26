@@ -93,7 +93,7 @@ class InvoicesController extends Controller
 
             //move pic
             $imageName = $request->pic->getClientOriginalName();
-            $request->pic->move(public_path('Attachment/' . $invoice_number), $imageName);
+            $request->pic->move(public_path('Attachment/' .date('Y'). $invoice_number), $imageName);
 
         }
 

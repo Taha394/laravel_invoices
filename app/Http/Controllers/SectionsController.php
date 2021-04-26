@@ -33,7 +33,7 @@ class SectionsController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function store(Request $request)
     {
@@ -52,7 +52,7 @@ class SectionsController extends Controller
                 ]);
 
 
-            session()->flash('Add', 'تم اضافه القسم بنجاح');
+            session()->flash('Add');
             return redirect('/categories');
 
     }
@@ -63,7 +63,7 @@ class SectionsController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Sections  $sections
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function update(Request $request)
     {
@@ -72,12 +72,12 @@ class SectionsController extends Controller
         $this->validate($request, [
 
             'section_name' => 'required|max:255|unique:sections,section_name,'.$id,
-            'description' => 'required',
+//            'description' => 'required',
         ],[
 
             'section_name.required' =>'يرجي ادخال اسم القسم',
             'section_name.unique' =>'اسم القسم مسجل مسبقا',
-            'description.required' =>'يرجي ادخال البيانات',
+//            'description.required' =>'يرجي ادخال البيانات',
 
         ]);
 
@@ -95,13 +95,13 @@ class SectionsController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\sections  $sections
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
      */
     public function destroy(Request $request)
     {
         $id = $request->id;
         Sections::find($id)->delete();
-        session()->flash('delete','تم حذف القسم بنجاح');
+        session()->flash('delete');
         return redirect('/categories');
     }
 }

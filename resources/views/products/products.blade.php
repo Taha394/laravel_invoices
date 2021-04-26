@@ -6,6 +6,8 @@
     <link href="{{URL::asset('assets/plugins/datatable/css/jquery.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('assets/plugins/datatable/css/responsive.dataTables.min.css')}}" rel="stylesheet">
     <link href="{{URL::asset('assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet">
+    <!--Internal   Notify -->
+    <link href="{{URL::asset('assets/plugins/notify/css/notifIt.css')}}" rel="stylesheet"/>
 
 @section('title')
     {{__('messages.product')}}
@@ -33,30 +35,36 @@
     @endif
 
     @if(session()->has('Add'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{ session()->get('Add') }}</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+        <script>
+            window.onload = function (){
+                notif({
+                    msg:'تم اضافه المنتج بنجاح',
+                    type:'success'
+                })
+            }
+        </script>
     @endif
 
     @if (session()->has('delete'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{ session()->get('delete') }}</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
+        <script>
+            window.onload = function (){
+                notif({
+                    msg:'تم حذف المنتج بنجاح',
+                    type:'success'
+                })
+            }
+        </script>
     @endif
 
     @if (session()->has('edit'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>{{ session()->get('edit') }}</strong>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true"> &times;</span>
-            </button>
-        </div>
+        <script>
+            window.onload = function (){
+                notif({
+                    msg:'تم تعديل المنتج بنجاج',
+                    type:'success'
+                })
+            }
+        </script>
     @endif
 				<!-- row -->
     <div class="row">
@@ -255,6 +263,9 @@
     <script src="{{URL::asset('assets/js/table-data.js')}}"></script>
     <!-- Internal Modal js-->
     <script src="{{URL::asset('assets/js/modal.js')}}"></script>
+    <!--Internal  Notify js -->
+    <script src="{{URL::asset('assets/plugins/notify/js/notifIt.js')}}"></script>
+    <script src="{{URL::asset('assets/plugins/notify/js/notifit-custom.js')}}"></script>
 
 
     <script>

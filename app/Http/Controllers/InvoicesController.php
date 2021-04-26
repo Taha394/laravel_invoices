@@ -6,17 +6,23 @@ use App\Invoice_attachments;
 use App\Invoices;
 use App\InvoicesDetails;
 use App\Sections;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+use Illuminate\Routing\Redirector;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\View\View;
 
 class InvoicesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function index()
     {
@@ -27,7 +33,7 @@ class InvoicesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return Response
      */
     public function create()
     {
@@ -38,8 +44,8 @@ class InvoicesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @return RedirectResponse
      */
     public function store(Request $request)
     {
@@ -72,8 +78,7 @@ class InvoicesController extends Controller
             'user' => (Auth::user()->name),
         ]);
 
-        if ($request->hasFile('pic'))
-        {
+        if ($request->hasFile('pic')) {
 //            $this->validate($request, ['pic' => 'required|mimes:pdf|max:1000'], ['pic.mimes' => 'wrong:saved']);
             $invoice_id = Invoices::latest()->first()->id;
             $image = $request->file('pic');
@@ -100,8 +105,8 @@ class InvoicesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Invoices  $invoices
-     * @return \Illuminate\Http\Response
+     * @param Invoices $invoices
+     * @return Response
      */
     public function show(Invoices $invoices)
     {
@@ -111,8 +116,8 @@ class InvoicesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Invoices  $invoices
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Http\Response|\Illuminate\View\View
+     * @param Invoices $invoices
+     * @return Application|Factory|Response|View
      */
     public function edit($id)
     {
@@ -124,13 +129,12 @@ class InvoicesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Invoices  $invoices
-     * @return \Illuminate\Http\RedirectResponse
+     * @param Request $request
+     * @param Invoices $invoices
+     * @return RedirectResponse
      */
     public function update(Request $request)
     {
-
         $invoices = Invoices::findOrFail($request->invoice_id);
         $invoices->update([
             'invoice_number' => $request->invoice_number,
@@ -147,15 +151,15 @@ class InvoicesController extends Controller
             'note' => $request->note,
         ]);
 
-        session()->flash('edit', 'تم تعديل الفاتورة بنجاح');
+        session()->flash('edit');
         return back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Invoices  $invoices
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
+     * @param Invoices $invoices
+     * @return Application|RedirectResponse|Response|Redirector
      */
     public function destroy(Request $request)
     {
@@ -163,7 +167,7 @@ class InvoicesController extends Controller
         $invoices = Invoices::where('id', $id)->first();
         $Details = Invoice_attachments::where('invoice_id', $id)->first();
 
-        $id_page =$request->id_page;
+        $id_page = $request->id_page;
 
 
         if (!$id_page == 2) {
@@ -171,15 +175,15 @@ class InvoicesController extends Controller
             if (!empty($Details->invoice_number)) {
 
                 Storage::disk('public_uploads')->deleteDirectory($Details->invoice_number);
+
+//                Storage::disk('public_uploads')->delete($Details->invoice_number.'/'. $Details->file_name);
             }
 
             $invoices->forceDelete();
             session()->flash('delete_invoice');
             return redirect('/invoices');
 
-        }
-
-        else {
+        } else {
 
             $invoices->delete();
             session()->flash('archive_invoice');

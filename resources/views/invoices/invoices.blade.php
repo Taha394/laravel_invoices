@@ -48,6 +48,17 @@
             }
         </script>
     @endif
+
+    @if(session()->has('status_update'))
+        <script>
+            window.onload = function () {
+                notif({
+                    msg: 'تم تحديث حاله الدفع بنجاح',
+                    type: 'success'
+                })
+            }
+        </script>
+    @endif
     <!-- row -->
     <div class="row">
         <div class="col-xl-12">
@@ -103,8 +114,10 @@
                                             <span class="text-success">{{ $invoice->status }}</span>
                                         @elseif($invoice->value_status === 2)
                                             <span class="text-danger">{{ $invoice->status }}</span>
-                                        @else
+                                        @elseif($invoice->value_status === 3)
                                             <span class="text-warning">{{ $invoice->status }}</span>
+                                        @else()
+                                            <span class="text-dark">{{ $invoice->status }}</span>
                                         @endif
                                     </td>
                                     <td>{{$invoice->note}}</td>
@@ -127,7 +140,7 @@
                                                 </a>
 
 
-                                                    <a class="dropdown-item" href="#">
+                                                    <a class="dropdown-item" href="{{ url::route('status_show', [$invoice->id]) }}">
                                                         <i class=" text-success fas fa-money-bill"></i>&nbsp;&nbsp;تغير
                                                         حالة
                                                         الدفع

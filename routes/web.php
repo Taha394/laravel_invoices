@@ -32,6 +32,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('view_file/{invoice_number}/{file_name}', 'InvoicesDetailsController@openFile');
     Route::post('delete_file', 'InvoicesDetailsController@destroy')->name('delete_file');
     Route::get('/edit_invoice/{id}', 'InvoicesController@edit');
+    Route::get('/status_show/{id}', 'InvoicesController@show')->name('status_show');
+    Route::post('/status_update/{id}', 'InvoicesController@statusUpdate')->name('status_update');
     Route::get('/{page}', 'AdminController@index');
 });
 

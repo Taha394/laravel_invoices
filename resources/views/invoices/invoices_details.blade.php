@@ -118,9 +118,9 @@
 
                                                     <tr>
                                                         <th scope="row">نسبة الضريبة</th>
-                                                        <td>{{ $invoices->rate_vAT }}</td>
+                                                        <td>{{ $invoices->rate_vat }}</td>
                                                         <th scope="row">قيمة الضريبة</th>
-                                                        <td>{{ $invoices->value_vAT }}</td>
+                                                        <td>{{ $invoices->value_vat }}</td>
                                                         <th scope="row">الاجمالي مع الضريبة</th>
                                                         <td>{{ $invoices->total }}</td>
                                                         <th scope="row">الحالة الحالية</th>

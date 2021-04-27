@@ -22,7 +22,7 @@ class InvoicesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function index()
     {
@@ -33,7 +33,7 @@ class InvoicesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return Response
+     * @return Application|Factory|View
      */
     public function create()
     {
@@ -105,19 +105,66 @@ class InvoicesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param Invoices $invoices
-     * @return Response
+     * @param $id
+     * @return Application|Factory|View
      */
-    public function show(Invoices $invoices)
+    public function show($id)
     {
-        //
+//        return $request;
+        $invoices = Invoices::where('id', $id)->first();
+        return view('invoices.status_update', compact('invoices'));
+    }
+
+    public function statusUpdate($id, Request $request)
+    {
+        $invoices = Invoices::findOrFail($id);
+        if ($request->status === 'مدفوعة' )
+        {
+            $invoices->update([
+                'value_status' => 1,
+                'status' => $request->status,
+                'payment_date' =>$request->payment_date,
+            ]);
+            InvoicesDetails::create([
+                'id_Invoice' =>$request->invoice_id,
+                'invoice_number' => $request->invoice_number,
+                'product' => $request->product,
+                'Section' => $request->Section,
+                'status' => $request->status,
+                'value_status' => 1,
+                'note' => $request->note,
+                'payment_date' =>$request->payment_date,
+                'user' => (Auth::user()->name),
+            ]);
+        }
+        else
+        {
+            $invoices->update([
+                'value_status' => 3,
+                'status' => $request->status,
+                'payment_date' =>$request->payment_date,
+            ]);
+            InvoicesDetails::create([
+                'id_Invoice' =>$request->invoice_id,
+                'invoice_number' => $request->invoice_number,
+                'product' => $request->product,
+                'Section' => $request->Section,
+                'status' => $request->status,
+                'value_status' => 3,
+                'note' => $request->note,
+                'payment_date' =>$request->payment_date,
+                'user' => (Auth::user()->name),
+            ]);
+        }
+        session()->flash('status_update');
+        return redirect('/invoices');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param Invoices $invoices
-     * @return Application|Factory|Response|View
+     * @param $id
+     * @return Application|Factory|View
      */
     public function edit($id)
     {
@@ -130,7 +177,6 @@ class InvoicesController extends Controller
      * Update the specified resource in storage.
      *
      * @param Request $request
-     * @param Invoices $invoices
      * @return RedirectResponse
      */
     public function update(Request $request)
@@ -158,8 +204,8 @@ class InvoicesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param Invoices $invoices
-     * @return Application|RedirectResponse|Response|Redirector
+     * @param Request $request
+     * @return Application|Redirector|RedirectResponse
      */
     public function destroy(Request $request)
     {

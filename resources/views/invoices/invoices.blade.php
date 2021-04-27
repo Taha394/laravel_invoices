@@ -59,6 +59,17 @@
             }
         </script>
     @endif
+
+    @if (session()->has('restore_invoice'))
+        <script>
+            window.onload = function() {
+                notif({
+                    msg: "تم استعادة الفاتورة بنجاح",
+                    type: "success"
+                })
+            }
+        </script>
+    @endif
     <!-- row -->
     <div class="row">
         <div class="col-xl-12">
@@ -200,7 +211,7 @@
             </div>
         </div>
     </div>
-    </div>
+
     <!-- ارشيف الفاتورة -->
     <div class="modal fade" id="Transfer_invoice" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
          aria-hidden="true">
@@ -263,6 +274,15 @@
 
     <script>
         $('#delete_invoice').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget)
+            var invoice_id = button.data('invoice_id')
+            var modal = $(this)
+            modal.find('.modal-body #invoice_id').val(invoice_id);
+        })
+    </script>
+
+    <script>
+        $('#Transfer_invoice').on('show.bs.modal', function(event) {
             var button = $(event.relatedTarget)
             var invoice_id = button.data('invoice_id')
             var modal = $(this)

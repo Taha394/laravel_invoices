@@ -57,7 +57,7 @@ return [
 
         'public_uploads' => [
             'driver' => 'local',
-            'root' => public_path() . '/Attachment/'. date('Y'),
+            'root' => public_path() . '/Attachment',
         ],
 
         's3' => [

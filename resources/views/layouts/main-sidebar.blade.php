@@ -53,11 +53,13 @@
                     <li><a class="slide-item"
                            href="{{ url('/' . $page='invoices') }}">{{__('messages.invoices list')}}</a></li>
                     <li><a class="slide-item"
-                           href="{{ url('/' . $page='chart-flot') }}">{{__('messages.invoices paid')}}</a></li>
+                           href="{{ url('/' . $page='invoices_paid') }}">{{__('messages.invoices paid')}}</a></li>
                     <li><a class="slide-item"
-                           href="{{ url('/' . $page='chart-chartjs') }}">{{__('messages.invoices unpaid')}}</a></li>
+                           href="{{ url('/' . $page='invoices-unpaid') }}">{{__('messages.invoices unpaid')}}</a></li>
                     <li><a class="slide-item"
-                           href="{{ url('/' . $page='chart-echart') }}">{{__('messages.invoices paid part')}}</a></li>
+                           href="{{ url('/' . $page='invoices_partial') }}">{{__('messages.invoices paid part')}}</a></li>
+                    <li><a class="slide-item"
+                           href="{{ url('/' . $page='invoices_archive') }}">{{__('messages.invoices Archive')}}</a></li>
 
                 </ul>
             </li>

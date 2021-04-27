@@ -57,5 +57,7 @@ return [
     'product edit' => 'تعديل المنتج',
     'invoices add' => 'اضافه فاتوره',
     'invoices_details' => 'تفاصيل الفاتوره',
+    'invoices Archive' => 'الفواتير المؤرشفه',
+
 
 ];
